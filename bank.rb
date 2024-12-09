@@ -1,4 +1,3 @@
-require_relative "classes/CustomerData"
 require_relative "methods/create_account"
 require_relative "methods/sign_in"
 require_relative "methods/admin_panel"
@@ -18,7 +17,6 @@ puts <<~ASCII_ART
  '----------------'    '----------------'    '----------------'    '----------------'    '----------------' 
 ASCII_ART
 
-bank_customers = []
 menu_loop = false
 
 puts MENU_TEXT
@@ -34,15 +32,10 @@ while true
   case choice
   when 1
     new_customer = create_account
-    bank_customers << new_customer
     menu_loop = true
   when 2
     sign_in
   when 3
-    puts "\nList of customers: \n"
-    bank_customers.each { |customer| puts customer.isim }
-    menu_loop = true
-  when 4
     puts "Çıkış yapıldı... Bizi Tercih Ettiğiniz İçin Teşekkürler!"
     break
   when 999
