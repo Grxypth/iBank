@@ -1,7 +1,7 @@
 def create_account  
   puts "İsim ve soyisminizi giriniz"
-  isim = gets.chomp
+  isim = gets.chomp.downcase
   puts "Şifrenizi giriniz"
-  password = gets.chomp
+  password = gets.chomp.downcase
   new_customer = Customer.new(isim, password)
 end

@@ -17,11 +17,11 @@ puts <<~ASCII_ART
  '----------------'    '----------------'    '----------------'    '----------------'    '----------------' 
 ASCII_ART
 
-ihsan_bey=Customer.new("İhsan Aycan","1234",1000)
-ali_bey=Customer.new("Ali Daşbaşı","5678",1000)
-burak_bey=Customer.new("Burak Yılmaz","1122",1000)
-mustafa_bey=Customer.new("Mustafa Yılmaz","3344",1000)
-tülin_hanım=Customer.new("Tülin Özen","5566",1000)
+ihsan_bey=Customer.new("ihsan aycan","1234",1000)
+ali_bey=Customer.new("ali daşbaşı","5678",1000)
+burak_bey=Customer.new("burak yılmaz","1122",1000)
+mustafa_bey=Customer.new("mustafa yılmaz","3344",1000)
+tülin_hanım=Customer.new("tülin özen","5566",1000)
 
 
 

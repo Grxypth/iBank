@@ -6,11 +6,11 @@ Hesap Yönetimi
 - 1 hesap 0 tl ile başlar
 - 1 hesap 200.000TL ile başlar.
 
-*Kullanıcılar hesap oluşturabilir.
-*Kullanıcılar bilgileriyle giriş yapabilir
-*Kullanıcılar şifrelerini değiştirebilir.
+*Kullanıcılar hesap oluşturabilir. tick
+*Kullanıcılar bilgileriyle giriş yapabilir tick
+*Kullanıcılar şifrelerini değiştirebilir. 
 - Şifre değiştirirken mevcut şifrelerini doğru girip yeni şifrelerini belirtmelidirler.
-*Kullanıcılar para çekebilir
+*Kullanıcılar para çekebilir 
 *Kullanıcılar para yatırabilir
 
 

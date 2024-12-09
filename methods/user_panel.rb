@@ -3,29 +3,13 @@ require_relative "../strings/menu_text"
 require_relative "../classes/CustomerData"
 require "byebug"
 ## eğer bu paneli kullanmaya devam etmek istiyorsanız bu method false döndürmeli, eğer bir önceki menüye dönmek istiyorsanız true döndürmelidir.
-def admin_panel
-  admin_username = "admin"
-  admin_password = "admin"
-  is_admin = false
+def user_panel(customer)
   menu_loop = false
 
-  print "Kullanıcı adı: "
-  username = gets.chomp
-  print "Şifre: "
-  password = gets.chomp
-
-  if username == admin_username && password == admin_password
-    is_admin = true
-  else
-    puts AUTH_ERROR
-    return true
-  end
-
-  puts ADMIN_MENU_TEXT
+  puts USER_MENU_TEXT
   while true
-    if is_admin
       if menu_loop
-        puts ADMIN_MENU_TEXT
+        puts USER_MENU_TEXT
         menu_loop = false
       end
 
@@ -33,8 +17,8 @@ def admin_panel
 
       case choice
       when 1
-        puts "\nList of customers: \n"
-        Customer.all_customers.each { |customer| puts "#{customer.isim}\n" }
+        puts "\nBakiye bilgisi: \n"
+        puts customer.bakiye
         menu_loop = true
       when 2
         return true
@@ -42,6 +26,5 @@ def admin_panel
         puts "\nGeçersiz işlem. Lütfen tekrar deneyin."
         menu_loop = true
       end
-    end
   end
 end

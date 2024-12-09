@@ -18,8 +18,8 @@ class Customer
   def self.all_customers
   @@customers
   end
-  def self.find_customer(isim)
-    @@customers.find { |customer| customer.isim == isim }
+  def self.find_customer(isim,password)
+    @@customers.find { |customer| customer.isim == isim && customer.password==password}
   end
   def withdraw(miktar)
     if @bakiye >= miktar
