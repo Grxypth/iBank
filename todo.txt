@@ -1,0 +1,35 @@
+Hesap Yönetimi
+
+
+*Default 5 hesap oluştur.
+- 1 hesap -10.500TL ile başlar
+- 1 hesap 0 tl ile başlar
+- 1 hesap 200.000TL ile başlar.
+
+*Kullanıcılar hesap oluşturabilir.
+*Kullanıcılar bilgileriyle giriş yapabilir
+*Kullanıcılar şifrelerini değiştirebilir.
+- Şifre değiştirirken mevcut şifrelerini doğru girip yeni şifrelerini belirtmelidirler.
+*Kullanıcılar para çekebilir
+*Kullanıcılar para yatırabilir
+
+
+Para Yatırma
+
+*Banknot haznesi her banknot türü için 600 adeti aşamaz. ATM'nin kapasitesi dolmuşsa kullanıcıya bilgi verilir ve işlem yapılamaz.
+*Kullanıcı, yatırmak istediği miktarı belirtir ve hangi banknotları yatırdığını
+belirtmelidir.
+- Belirtilen banknotlar ve yatırmak istenilen miktar uyuşmalı.
+
+
+Para Çekme İşlemi
+
+
+*Çekilen tutar ATM'deki mevcut paradan büyük olamaz
+*Çekilen miktar en az sayıda banknotlar ile yapılmalı.
+
+ATM
+
+5 Farklı banknot türü bulunur 5TL,10TL,20TL,50TL,100TL,200.000TL
+her banknottan 500 adet bulunur
+Bir adet banknot türünden 600dan fazla bulunamaz.

@@ -1,3 +1,9 @@
+require_relative "classes/CustomerData"
+require_relative "methods/create_account"
+require_relative "methods/sign_in"
+require_relative "methods/admin_panel"
+require_relative "strings/menu_text"
+
 puts <<~ASCII_ART
  .----------------.    .----------------.    .----------------.    .-----------------.   .----------------. 
 | .--------------. |  | .--------------. |  | .--------------. |  | .--------------. |  | .--------------. |
@@ -11,15 +17,15 @@ puts <<~ASCII_ART
 | '--------------' |  | '--------------' |  | '--------------' |  | '--------------' |  | '--------------' |
  '----------------'    '----------------'    '----------------'    '----------------'    '----------------' 
 ASCII_ART
-puts "iBank'a hoşgeldiniz!"
-puts "Lütfen yapmak istediğiniz işlemi seçin:"
-puts "1. Hesap Aç\n2. Giriş Yap \n3. Çıkış"
+
+bank_customers = []
 menu_loop = false
+
+puts MENU_TEXT
 
 while true
   if menu_loop
-    puts "Lütfen yapmak istediğiniz işlemi seçin:"
-    puts "1. Hesap Aç\n2. Giriş Yap \n3. Çıkış"
+    puts MENU_TEXT
     menu_loop = false
   end
 
@@ -27,16 +33,23 @@ while true
 
   case choice
   when 1
-    puts "Hesap açma işlemi seçildi."
-    break
+    new_customer = create_account
+    bank_customers << new_customer
+    menu_loop = true
   when 2
-    puts "Giriş yapma işlemi seçildi."
-    break
+    sign_in
   when 3
+    puts "\nList of customers: \n"
+    bank_customers.each { |customer| puts customer.isim }
+    menu_loop = true
+  when 4
     puts "Çıkış yapıldı... Bizi Tercih Ettiğiniz İçin Teşekkürler!"
     break
+  when 999
+    puts "Admin kullanıcı bilgilerini giriniz"
+    menu_loop = admin_panel
   else
-    puts "Geçersiz işlem. Lütfen tekrar deneyin."
+    puts "\nGeçersiz işlem. Lütfen tekrar deneyin."
     menu_loop = true
   end
 end
