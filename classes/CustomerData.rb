@@ -2,11 +2,12 @@ class Customer
   attr_accessor :isim, :password
   attr_reader :bakiye
 
+  @@customers = []
+
   def initialize(isim, password, bakiye = 0)
     @isim = isim
     @password = password
     @bakiye = bakiye
-    @@customers = []
     @@customers << self
   end
 

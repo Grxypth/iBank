@@ -1,4 +1,4 @@
-def create_account
+def create_account  
   puts "İsim ve soyisminizi giriniz"
   isim = gets.chomp
   puts "Şifrenizi giriniz"
