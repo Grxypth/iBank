@@ -20,7 +20,7 @@ Para Yatırma
 *Kullanıcı, yatırmak istediği miktarı belirtir ve hangi banknotları yatırdığını
 belirtmelidir.
 - Belirtilen banknotlar ve yatırmak istenilen miktar uyuşmalı.
-
+## para yatırırken banknot aşımı olursa kullancııya kaç liralık banknotlar şeklinde yatırabilicekleri hakkında bilgi ver.
 
 Para Çekme İşlemi
 

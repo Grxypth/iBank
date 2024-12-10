@@ -1,6 +1,6 @@
 require_relative "methods/create_account"
 require_relative "methods/sign_in"
-require_relative "methods/admin_panel"
+require_relative "methods/panels/admin_panel"
 require_relative "strings/menu_text"
 
 puts <<~ASCII_ART
@@ -17,10 +17,10 @@ puts <<~ASCII_ART
  '----------------'    '----------------'    '----------------'    '----------------'    '----------------' 
 ASCII_ART
 
-ihsan_bey=Customer.new("ihsan aycan","1234",1000)
+ihsan_bey=Customer.new("ihsan aycan","1234",-10500)
 ali_bey=Customer.new("ali daşbaşı","5678",1000)
-burak_bey=Customer.new("burak yılmaz","1122",1000)
-mustafa_bey=Customer.new("mustafa yılmaz","3344",1000)
+burak_bey=Customer.new("burak yılmaz","1122",200000)
+ahmet_bey=Customer.new("ahmet yılmaz","3344",0)
 tülin_hanım=Customer.new("tülin özen","5566",1000)
 
 
@@ -39,10 +39,10 @@ while true
 
   case choice
   when 1
-    new_customer = create_account
+    create_account
     menu_loop = true
   when 2
-    sign_in
+    menu_loop=sign_in
   when 3
     puts "Çıkış yapıldı... Bizi Tercih Ettiğiniz İçin Teşekkürler!"
     break

@@ -1,5 +1,5 @@
 require_relative "../classes/CustomerData"
-require_relative "user_panel"
+require_relative "/panels/user_panel"
 
 def sign_in
   puts "İsim ve soyisminizi giriniz"
@@ -11,5 +11,6 @@ def sign_in
     user_panel(Customer.find_customer(isim, password))
   else
     puts AUTH_ERROR
+    return true
   end
 end
