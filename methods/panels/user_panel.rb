@@ -1,6 +1,7 @@
-require_relative "../strings/errors"
-require_relative "../strings/menu_text"
-require_relative "../classes/CustomerData"
+require_relative '../../strings/errors'
+require_relative '../../strings/errors'
+require_relative "../../classes/CustomerData"
+require_relative "../billify"
 require "byebug"
 ## eğer bu paneli kullanmaya devam etmek istiyorsanız bu method false döndürmeli, eğer bir önceki menüye dönmek istiyorsanız true döndürmelidir.
 def user_panel(customer)
@@ -21,8 +22,10 @@ def user_panel(customer)
       puts customer.bakiye
       menu_loop = true
     when 2
-      customer.deposit(100)
-      menu_loop = true
+      puts "Elinizdeki banknotlara göre seçim yapınız"
+      transaction_bills,miktar= billify()
+      customer.deposit(transaction_bills,miktar)
+      menu_loop=true      
     when 3
       puts "Çekmek istediğiniz miktarı giriniz"
       miktar = gets.chomp.to_i

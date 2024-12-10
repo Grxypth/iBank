@@ -1,4 +1,3 @@
-require_relative "../strings/money_constants"
 class MoneyData
   @@bills = {
     "200": 500,

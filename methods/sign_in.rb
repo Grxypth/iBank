@@ -1,5 +1,5 @@
 require_relative "../classes/CustomerData"
-require_relative "/panels/user_panel"
+require_relative "./panels/user_panel"
 
 def sign_in
   puts "İsim ve soyisminizi giriniz"

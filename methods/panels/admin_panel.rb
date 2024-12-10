@@ -1,6 +1,6 @@
-require_relative "../strings/errors"
-require_relative "../strings/menu_text"
-require_relative "../classes/CustomerData"
+require_relative "../../strings/errors"
+require_relative "../../strings/menu_text"
+require_relative "../../classes/CustomerData"
 require "byebug"
 ## eğer bu paneli kullanmaya devam etmek istiyorsanız bu method false döndürmeli, eğer bir önceki menüye dönmek istiyorsanız true döndürmelidir.
 def admin_panel
