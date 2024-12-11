@@ -3,9 +3,9 @@ require_relative "./panels/user_panel"
 
 def sign_in
   puts "İsim ve soyisminizi giriniz"
-  isim = gets.chomp
+  isim = validate_letter(gets.chomp.downcase)
   puts "Şifrenizi giriniz"
-  password = gets.chomp
+  password = valid_password(gets.chomp)
   customer_found = Customer.find_customer(isim, password)
   if customer_found
     user_panel(Customer.find_customer(isim, password))

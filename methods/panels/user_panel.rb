@@ -2,8 +2,8 @@ require_relative '../../strings/errors'
 require_relative '../../strings/errors'
 require_relative "../../classes/CustomerData"
 require_relative "../billify"
+require_relative "../utils/utils"
 require "byebug"
-## eğer bu paneli kullanmaya devam etmek istiyorsanız bu method false döndürmeli, eğer bir önceki menüye dönmek istiyorsanız true döndürmelidir.
 def user_panel(customer)
   menu_loop = false
 
@@ -33,9 +33,9 @@ def user_panel(customer)
       menu_loop = true
     when 4
       puts "Eski şifrenizi giriniz"
-      if gets.chomp == customer.password
+      if valid_password(gets.chomp) == customer.password
         puts "Yeni şifrenizi giriniz"
-        new_password = gets.chomp
+        new_password = valid_password(gets.chomp)
         customer.password = new_password
         puts "Şifreniz başarıyla değiştirildi."
         menu_loop = true
