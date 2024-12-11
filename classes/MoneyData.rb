@@ -1,52 +1,77 @@
+require "json"
+require_relative '../methods/utils/utils'
+require_relative "../strings/paths.rb"
 class MoneyData
-  @@bills = {
-    "200": 500,
-    "100": 500,
-    "50": 500,
-    "20": 500,
-    "10": 500,
-    "5": 500
-  }
-  MAX_BILL = 600
-  @@total = 0
-  def self.calculate_bills(bills)
+
+  def initialize
+    @bills = load_bills
+    @total = calculate_bills(@bills)
+    @MAX_BILL = 600
+  end
+
+  def load_bills
+    if File.exist?(FILE_PATH)
+      data = JSON.parse(File.read(FILE_PATH))
+      data["bills"] || { "200": 500, "100": 500, "50": 500, "20": 500, "10": 500, "5": 500 }
+    else
+      { "200": 500, "100": 500, "50": 500, "20": 500, "10": 500, "5": 500 }
+    end
+  end
+  
+
+  def save_bills
+    save_file(FILE_PATH, "bills", @bills)
+  end
+
+  def calculate_bills(bills)
     total = 0
     bills.each do |key, value|
       bill_data = key.to_s.to_i
       total += bill_data * value
-      @@total = total
     end
     total
   end
+
+  def amount_to_bills(miktar)
+    @bills.each do |key, value|
+        bill_data = key.to_s.to_i
+        if miktar >= bill_data
+          bill_count = miktar / bill_data
+          @bills[key] = bill_count
+          miktar -= bill_data * bill_count
+        end 
+      end
+end
+
   def update_bill_data(transaction_bills, type)
-    banka_fakir =
-      MoneyData.calculate_bills(transaction_bills) >
-        MoneyData.calculate_bills(@@bills)
-    if (type == "withdraw" && banka_fakir)
+    banka_fakir = calculate_bills(transaction_bills) > calculate_bills(@bills)
+    if type == "withdraw" && banka_fakir
       puts "Banka kasasında yeterli bakiye yok."
       return false
     end
 
     if type == "deposit"
-      @@bills.each do |key, value|
+      @bills.each do |key, value|
         new_count = value + transaction_bills[key]
-        if new_count > MAX_BILL
+        if new_count > @MAX_BILL
           puts "Banka kasasında banknotlarınızı alacak kadar yer yok."
           return false
         end
       end
     end
 
-    @@bills.each do |key, value|
+    @bills.each do |key, value|
       if type == "deposit"
-        @@bills[key] += transaction_bills[key]
+        @bills[key] += transaction_bills[key]
       else
-        @@bills[key] -= transaction_bills[key]
+        @bills[key] -= transaction_bills[key]
       end
     end
 
-    @@bills.each { |key, value| puts "#{key} TL: #{value} adet" if value > 0 }
-    puts "Banka kasasında #{MoneyData.calculate_bills(@@bills)}TL var"
+    save_bills
+
+    @bills.each { |key, value| puts "#{key} TL: #{value} adet" if value > 0 }
+    puts "Banka kasasında #{calculate_bills(@bills)}TL var"
     return true
   end
 end

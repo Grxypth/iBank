@@ -2,21 +2,30 @@ require_relative "MoneyData"
 class Customer
   attr_accessor :isim, :password
   attr_reader :bakiye
-
+  
+  BANK_FILE_PATH = "bills_data.json"
   @@customers = []
-  @@vault_data = MoneyData.new
 
   def initialize(isim, password, bakiye = 0)
     @isim = isim
     @password = password
     @bakiye = bakiye
     @@customers << self
+    @bank_object=MoneyData.new
+    # @bills = load_bills
   end
 
-  def deposit(transaction_bills, miktar)
-    bills = { "200": 0, "100": 0, "50": 0, "20": 0, "10": 0, "5": 0 }
-    bills.each { |key, value| bills[key] += transaction_bills[key] }
-    if @@vault_data.update_bill_data(bills, "deposit") == true
+  # def self.load_bills
+  #   if File.exist?(FILE_PATH)
+  #     data = JSON.parse(File.read(FILE_PATH))
+  #     data["bills"] || { "200": 0, "100": 0, "50": 0, "20": 0, "10": 0, "5": 0 }
+  #   else
+  #     { "200": 0, "100": 0, "50": 0, "20": 0, "10": 0, "5": 0 }
+  #   end
+  # end
+ 
+def deposit(transaction_bills, miktar) 
+    if @bank_object.update_bill_data(transaction_bills, "deposit") == true
       @bakiye += miktar
       puts "#{miktar}TL yatırdınız. Yeni bakiyeniz: #{@bakiye}\n"
     end
@@ -33,20 +42,10 @@ class Customer
   def withdraw(miktar)
     if @bakiye >= miktar
       original_amount = miktar
-      bills = { "200": 0, "100": 0, "50": 0, "20": 0, "10": 0, "5": 0 }
-
-      bills.each do |key, value|
-        bill_data = key.to_s.to_i
-        if miktar >= bill_data
-          bill_count = miktar / bill_data
-          bills[key] = bill_count
-          miktar -= bill_data * bill_count
-        end
-      end
-
-      if @@vault_data.update_bill_data(bills, "withdraw") == true
+      bills=@bank_object.amount_to_bills(miktar)
+      if @bank_object.update_bill_data(bills, "withdraw") == true
         @bakiye -= (original_amount - miktar)
-        @@vault_data.update_bill_data(bills, "withdraw")
+        @bank_object.update_bill_data(bills, "withdraw")
         puts "\nToplam #{original_amount}TL çektiniz:"
         bills.each { |key, value| puts "#{key} TL: #{value} adet" if value > 0 }
         puts "Yeni bakiyeniz #{@bakiye}TL\n"

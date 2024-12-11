@@ -1,0 +1,7 @@
+*Attr_accesor ile instance deüişkenlerinin getter ve setter methodlarını elle yazmadan, otomatik olarak atadığım değişken sayesinde instance değişkenine erişim sağlayabileceğimi öğrendim.
+*json dosyalarında nasıl arama yapıp nasıl sadece istediğim fieldi/keyi değiştirebileceğimi öğrendim.
+*class değişkenlerini kullanmayı öğrendim.
+*birden fazla ruby dosyası içeren bir projeyle çalışmayı öğrendim.
+*bir classın içerisinde nasıl başka bir classtan method kullanabileceğimi öğrendim.
+*bir classın kendi bir methodunu o classının başka bir methodu içerisinde nasıl kullanabileceğimi öğrendim.
+*Classların scopeleri hakkında bilgi edindim. Class değişkenleri,Class instance değişkenleri, instance değişkenleri hakkında bilgi edindim.

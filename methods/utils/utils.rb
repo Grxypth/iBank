@@ -32,3 +32,18 @@ def valid_password(input)
     end
   end
 end
+
+
+
+def save_file(file_path,section_name,saved_data)
+  if File.exist?(file_path)
+    data = JSON.parse(File.read(FILE_PATH))
+    data.merge!(section_name => saved_data)
+  else
+    data = { section_name => saved_data }
+  end
+  
+  File.open(FILE_PATH, "w") do |file|
+    file.write(JSON.generate(data))
+  end
+end
