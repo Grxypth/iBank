@@ -40,18 +40,16 @@ def deposit(transaction_bills, miktar)
     end
   end
   def withdraw(miktar)
-    if @bakiye >= miktar
+    withdrawn_bills=@bank_object.amount_to_bills(miktar)
+    withdrawn_bills.each do |key, value|
+      puts "#{key} TL: #{value} adet"
+    end
+    if @bakiye >= miktar &&  @bank_object.update_bill_data(withdrawn_bills, "withdraw") == true
       original_amount = miktar
-      bills=@bank_object.amount_to_bills(miktar)
-      if @bank_object.update_bill_data(bills, "withdraw") == true
-        @bakiye -= (original_amount - miktar)
-        @bank_object.update_bill_data(bills, "withdraw")
+        @bakiye -= miktar
         puts "\nToplam #{original_amount}TL çektiniz:"
-        bills.each { |key, value| puts "#{key} TL: #{value} adet" if value > 0 }
+        withdrawn_bills.each { |key, value| puts "#{key} TL: #{value} adet" if value > 0 }
         puts "Yeni bakiyeniz #{@bakiye}TL\n"
-      else
-        return
-      end
     else
       puts "Yetersiz bakiye."
       puts "Bakiyeniz #{@bakiye}TL"

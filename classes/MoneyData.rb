@@ -5,7 +5,7 @@ class MoneyData
 
   def initialize
     @bills = load_bills
-    @total = calculate_bills(@bills)
+    @total = calculate_bills(load_bills)
     @MAX_BILL = 600
   end
 
@@ -13,6 +13,7 @@ class MoneyData
     if File.exist?(FILE_PATH)
       data = JSON.parse(File.read(FILE_PATH))
       data["bills"] || { "200": 500, "100": 500, "50": 500, "20": 500, "10": 500, "5": 500 }
+      puts data["bills"] ##silince çalışmıyor
     else
       { "200": 500, "100": 500, "50": 500, "20": 500, "10": 500, "5": 500 }
     end
@@ -25,23 +26,25 @@ class MoneyData
 
   def calculate_bills(bills)
     total = 0
-    bills.each do |key, value|
+    @bills.each do |key, value|
       bill_data = key.to_s.to_i
       total += bill_data * value
     end
-    total
+   total
   end
 
   def amount_to_bills(miktar)
-    @bills.each do |key, value|
+    transaction_bills={ "200": 0, "100": 0, "50": 0, "20": 0, "10": 0, "5": 0 }
+    transaction_bills.each do |key, value|
         bill_data = key.to_s.to_i
         if miktar >= bill_data
           bill_count = miktar / bill_data
-          @bills[key] = bill_count
+          transaction_bills[key] = bill_count
           miktar -= bill_data * bill_count
         end 
       end
-end
+      return transaction_bills
+    end
 
   def update_bill_data(transaction_bills, type)
     banka_fakir = calculate_bills(transaction_bills) > calculate_bills(@bills)
@@ -71,7 +74,7 @@ end
     save_bills
 
     @bills.each { |key, value| puts "#{key} TL: #{value} adet" if value > 0 }
-    puts "Banka kasasında #{calculate_bills(@bills)}TL var"
+    ##puts "Banka kasasında #{calculate_bills(@bills)}TL var"
     return true
   end
 end
