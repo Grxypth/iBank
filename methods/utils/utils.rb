@@ -35,15 +35,16 @@ end
 
 
 
-def save_file(file_path,section_name,saved_data)
+def save_file(file_path, saved_data)
   if File.exist?(file_path)
-    data = JSON.parse(File.read(FILE_PATH))
-    data.merge!(section_name => saved_data)
+    data = JSON.parse(File.read(file_path))
   else
-    data = { section_name => saved_data }
+    data = {} 
   end
-  
-  File.open(FILE_PATH, "w") do |file|
+
+  data = saved_data
+
+  File.open(file_path, "w") do |file|
     file.write(JSON.generate(data))
   end
 end

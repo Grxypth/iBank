@@ -44,7 +44,9 @@ def deposit(transaction_bills, miktar)
     withdrawn_bills.each do |key, value|
       puts "#{key} TL: #{value} adet"
     end
+    ##alttaki if statementa girmiyor
     if @bakiye >= miktar &&  @bank_object.update_bill_data(withdrawn_bills, "withdraw") == true
+       puts "i work"
       original_amount = miktar
         @bakiye -= miktar
         puts "\nToplam #{original_amount}TL çektiniz:"

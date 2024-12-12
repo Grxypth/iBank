@@ -10,10 +10,10 @@ class MoneyData
   end
 
   def load_bills
-    if File.exist?(FILE_PATH)
-      data = JSON.parse(File.read(FILE_PATH))
-      data["bills"] || { "200": 500, "100": 500, "50": 500, "20": 500, "10": 500, "5": 500 }
-      puts data["bills"] ##silince çalışmıyor
+    if File.exist?("bills_data.json")
+      data = JSON.parse(File.read("bills_data.json"))
+      data=data.transform_keys(&:to_sym)
+      return data
     else
       { "200": 500, "100": 500, "50": 500, "20": 500, "10": 500, "5": 500 }
     end
@@ -21,12 +21,12 @@ class MoneyData
   
 
   def save_bills
-    save_file(FILE_PATH, "bills", @bills)
+    save_file("bills_data.json", @bills)
   end
 
   def calculate_bills(bills)
     total = 0
-    @bills.each do |key, value|
+    bills.each do |key, value|
       bill_data = key.to_s.to_i
       total += bill_data * value
     end
@@ -62,8 +62,11 @@ class MoneyData
         end
       end
     end
+##problem here MAIN PROBLEM
+    
+puts "THE BILLS I AM READING BOI: #{@bills.inspect}"
 
-    @bills.each do |key, value|
+@bills.each do |key, value|
       if type == "deposit"
         @bills[key] += transaction_bills[key]
       else
@@ -72,8 +75,8 @@ class MoneyData
     end
 
     save_bills
-
-    @bills.each { |key, value| puts "#{key} TL: #{value} adet" if value > 0 }
+    puts "THE BILLS I AM SAVING BOI: #{@bills.inspect}"
+    ##@bills.each { |key, value| puts "#{key} TL: #{value} adet" if value > 0 }
     ##puts "Banka kasasında #{calculate_bills(@bills)}TL var"
     return true
   end

@@ -5,3 +5,5 @@
 *bir classın içerisinde nasıl başka bir classtan method kullanabileceğimi öğrendim.
 *bir classın kendi bir methodunu o classının başka bir methodu içerisinde nasıl kullanabileceğimi öğrendim.
 *Classların scopeleri hakkında bilgi edindim. Class değişkenleri,Class instance değişkenleri, instance değişkenleri hakkında bilgi edindim.
+*bir json dosyasından hash okuduğumuzda hashlerin rocket syntaxla okunduğunu yani keylerin sembol yerine string olarak davranıldığını öğrendim.
+* bana en büyük sorun çıkartan şey json dosyalarından aldığım hashlerin okunmasıydı, onları sembola çevirerek okumam gerektiğini öğrendim
