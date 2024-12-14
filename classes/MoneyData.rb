@@ -21,7 +21,14 @@ class MoneyData
   
 
   def save_bills
-    save_file("bills_data.json", @bills)
+    if File.exist?("bills_data.json")
+      data = JSON.parse(File.read("bills_data.json"))
+    else
+      data = {} 
+    end
+    File.open("bills_data.json", "w") do |file|
+      file.write(JSON.generate(@bills))
+    end
   end
 
   def calculate_bills(bills)
