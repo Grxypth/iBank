@@ -1,0 +1,12 @@
+*Attr_accesor ile instance deüişkenlerinin getter ve setter methodlarını elle yazmadan, otomatik olarak atadığım değişken sayesinde instance değişkenine erişim sağlayabileceğimi öğrendim.
+*json dosyalarında nasıl arama yapıp nasıl sadece istediğim fieldi/keyi değiştirebileceğimi öğrendim.
+*class değişkenlerini kullanmayı öğrendim.
+*birden fazla ruby dosyası içeren bir projeyle çalışmayı öğrendim.
+*bir classın içerisinde nasıl başka bir classtan method kullanabileceğimi öğrendim.
+*bir classın kendi bir methodunu o classının başka bir methodu içerisinde nasıl kullanabileceğimi öğrendim.
+*Classların scopeleri hakkında bilgi edindim. Class değişkenleri,Class instance değişkenleri, instance değişkenleri hakkında bilgi edindim.
+*bir json dosyasından hash okuduğumuzda hashlerin rocket syntaxla okunduğunu yani keylerin sembol yerine string olarak davranıldığını öğrendim.
+* bana en büyük sorun çıkartan şey json dosyalarından aldığım hashlerin okunmasıydı, onları sembola çevirerek okumam gerektiğini öğrendim
+* ben sistemimde üyeleri obje oluşturarak kaydediyor ve obje olarak tutuyordum, daha önceden oluşturulmuş hesapları programı her yeniden çalıştırdığımda yüklemem gerekiyordu bu yüzden, bunu aynı class içerisinde y
+*yapmaya çalıştırdığımda stack seviyesinin çok derin olduğunu söyleyen bir uyarı veriyordu program bana, yani sonsuz bir döngüye girdiği için böyle bir problem yaşıyordu çünkü sonsuz defa initialize kısmında
+* yeni obje oluşturuyordum yeni obje oluşturma gereken üye yükleme işleminide orda yaptığım için, bunu ekstra bir class kullanarak çözdüm 

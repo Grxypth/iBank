@@ -17,17 +17,9 @@ puts <<~ASCII_ART
  '----------------'    '----------------'    '----------------'    '----------------'    '----------------' 
 ASCII_ART
 
-ihsan_bey=Customer.new("ihsan aycan","1234",-10500)
-ali_bey=Customer.new("ali daşbaşı","5678",1000)
-burak_bey=Customer.new("burak yılmaz","1122",200000)
-ahmet_bey=Customer.new("ahmet yılmaz","3344",0)
-tülin_hanım=Customer.new("tülin özen","5566",1000)
-
-
-
-
 menu_loop = false
 puts MENU_TEXT
+CustomerLoader.load_customers("customer_data.json")
 
 while true
   if menu_loop
