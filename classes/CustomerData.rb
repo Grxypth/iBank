@@ -1,4 +1,4 @@
-require 'json'
+require "json"
 require_relative "MoneyData"
 require_relative "CustomerLoader"
 
@@ -26,7 +26,24 @@ class Customer
   end
 
   def save_customer
-    CustomerLoader.save_customers_to_file("customer_data.json", self.class.customers)
+    CustomerLoader.save_customers_to_file(
+      "customer_data.json",
+      self.class.customers
+    )
+  end
+
+  # New Method: Change Password
+  def change_password(old_password, new_password)
+    if old_password == @password
+      @password = new_password
+      save_customer
+      puts "Şifreniz başarıyla değiştirildi."
+      save_customer
+      true
+    else
+      puts "Eski şifre yanlış. Lütfen tekrar deneyin."
+      false
+    end
   end
 
   def deposit(transaction_bills, miktar)
@@ -38,16 +55,21 @@ class Customer
   end
 
   def self.find_customer(isim, password)
-    @customers.find { |customer| customer.isim == isim && customer.password == password }
+    @customers.find do |customer|
+      customer.isim == isim && customer.password == password
+    end
   end
 
   def withdraw(miktar)
     withdrawn_bills = @bank_object.amount_to_bills(miktar)
     withdrawn_bills.each { |key, value| puts "#{key} TL: #{value} adet" }
 
-    if @bakiye >= miktar && @bank_object.update_bill_data(withdrawn_bills, "withdraw")
+    if @bakiye >= miktar &&
+         @bank_object.update_bill_data(withdrawn_bills, "withdraw")
       puts "Toplam #{miktar}TL çektiniz:"
-      withdrawn_bills.each { |key, value| puts "#{key} TL: #{value} adet" if value > 0 }
+      withdrawn_bills.each do |key, value|
+        puts "#{key} TL: #{value} adet" if value > 0
+      end
       @bakiye -= miktar
       puts "Yeni bakiyeniz #{@bakiye}TL\n"
       save_customer
@@ -57,4 +79,3 @@ class Customer
     end
   end
 end
-
