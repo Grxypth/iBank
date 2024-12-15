@@ -19,8 +19,7 @@ ASCII_ART
 
 menu_loop = false
 puts MENU_TEXT
-new_customer = Customer.new()
-
+CustomerLoader.load_customers("customer_data.json")
 
 while true
   if menu_loop

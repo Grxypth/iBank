@@ -35,17 +35,16 @@ end
 
 
 
-def save_file(file_path, section_name, saved_data)
+def save_file(file_path, saved_data)
   if File.exist?(file_path)
-    # Read existing data from file
     data = JSON.parse(File.read(file_path))
-    # Ensure section_name is a symbol to avoid string issues
-    data[section_name.to_sym] = saved_data
   else
-    # If file doesn't exist, create it with the correct structure
-    data = { section_name.to_sym => saved_data }
+    data = {} # If the file doesn't exist, create an empty hash
   end
-  
+
+  # Save the bills data directly to the file
+  data = saved_data
+
   # Write the updated data back to the file
   File.open(file_path, "w") do |file|
     file.write(JSON.generate(data))
