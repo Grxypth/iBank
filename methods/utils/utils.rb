@@ -33,20 +33,14 @@ def valid_password(input)
   end
 end
 
-
-
 def save_file(file_path, saved_data)
   if File.exist?(file_path)
     data = JSON.parse(File.read(file_path))
   else
-    data = {} # If the file doesn't exist, create an empty hash
+    data = {}
   end
 
-  # Save the bills data directly to the file
   data = saved_data
 
-  # Write the updated data back to the file
-  File.open(file_path, "w") do |file|
-    file.write(JSON.generate(data))
-  end
+  File.open(file_path, "w") { |file| file.write(JSON.generate(data)) }
 end

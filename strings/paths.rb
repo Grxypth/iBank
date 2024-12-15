@@ -1,1 +1,0 @@
-FILE_PATH="bills_data.json"

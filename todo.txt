@@ -1,3 +1,38 @@
+
+finish change password functionality.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Hesap Yönetimi
 
 
@@ -33,3 +68,9 @@ ATM
 5 Farklı banknot türü bulunur 5TL,10TL,20TL,50TL,100TL,200.000TL
 her banknottan 500 adet bulunur
 Bir adet banknot türünden 600dan fazla bulunamaz.
+
+
+
+
+
+

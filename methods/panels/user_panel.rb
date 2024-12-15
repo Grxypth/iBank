@@ -1,5 +1,5 @@
-require_relative '../../strings/errors'
-require_relative '../../strings/errors'
+require_relative "../../strings/errors"
+require_relative "../../strings/errors"
 require_relative "../../classes/CustomerData"
 require_relative "../billify"
 require_relative "../utils/utils"
@@ -23,9 +23,9 @@ def user_panel(customer)
       menu_loop = true
     when 2
       puts "Elinizdeki banknotlara göre seçim yapınız"
-      transaction_bills,miktar= billify()
-      customer.deposit(transaction_bills,miktar)
-      menu_loop=true      
+      transaction_bills, miktar = billify()
+      customer.deposit(transaction_bills, miktar)
+      menu_loop = true
     when 3
       puts "Çekmek istediğiniz miktarı giriniz"
       miktar = gets.chomp.to_i
@@ -33,16 +33,11 @@ def user_panel(customer)
       menu_loop = true
     when 4
       puts "Eski şifrenizi giriniz"
-      if valid_password(gets.chomp) == customer.password
-        puts "Yeni şifrenizi giriniz"
-        new_password = valid_password(gets.chomp)
-        customer.password = new_password
-        puts "Şifreniz başarıyla değiştirildi."
-        menu_loop = true
-      else
-        puts "Şifreniz yanlış lütfen tekrar deneyin"
-        menu_loop = true
-      end
+      old_password = valid_password(gets.chomp)
+      puts "Yeni şifrenizi giriniz"
+      new_password = valid_password(gets.chomp)
+      customer.change_password(old_password, new_password)
+      menu_loop = true
     when 5
       return true
     else

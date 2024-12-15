@@ -1,8 +1,6 @@
 require "json"
-require_relative '../methods/utils/utils'
-require_relative "../strings/paths.rb"
+require_relative "../methods/utils/utils"
 class MoneyData
-
   def initialize
     @bills = load_bills
     @total = calculate_bills(load_bills)
@@ -12,19 +10,18 @@ class MoneyData
   def load_bills
     if File.exist?("bills_data.json")
       data = JSON.parse(File.read("bills_data.json"))
-      data=data.transform_keys(&:to_sym)
+      data = data.transform_keys(&:to_sym)
       return data
     else
       { "200": 500, "100": 500, "50": 500, "20": 500, "10": 500, "5": 500 }
     end
   end
-  
 
   def save_bills
     if File.exist?("bills_data.json")
       data = JSON.parse(File.read("bills_data.json"))
     else
-      data = {} 
+      data = {}
     end
     File.open("bills_data.json", "w") do |file|
       file.write(JSON.generate(@bills))
@@ -37,21 +34,28 @@ class MoneyData
       bill_data = key.to_s.to_i
       total += bill_data * value
     end
-   total
+    total
   end
 
   def amount_to_bills(miktar)
-    transaction_bills={ "200": 0, "100": 0, "50": 0, "20": 0, "10": 0, "5": 0 }
+    transaction_bills = {
+      "200": 0,
+      "100": 0,
+      "50": 0,
+      "20": 0,
+      "10": 0,
+      "5": 0
+    }
     transaction_bills.each do |key, value|
-        bill_data = key.to_s.to_i
-        if miktar >= bill_data
-          bill_count = miktar / bill_data
-          transaction_bills[key] = bill_count
-          miktar -= bill_data * bill_count
-        end 
+      bill_data = key.to_s.to_i
+      if miktar >= bill_data
+        bill_count = miktar / bill_data
+        transaction_bills[key] = bill_count
+        miktar -= bill_data * bill_count
       end
-      return transaction_bills
     end
+    return transaction_bills
+  end
 
   def update_bill_data(transaction_bills, type)
     banka_fakir = calculate_bills(transaction_bills) > calculate_bills(@bills)
@@ -69,11 +73,7 @@ class MoneyData
         end
       end
     end
-##problem here MAIN PROBLEM
-    
-puts "THE BILLS I AM READING BOI: #{@bills.inspect}"
-
-@bills.each do |key, value|
+    @bills.each do |key, value|
       if type == "deposit"
         @bills[key] += transaction_bills[key]
       else

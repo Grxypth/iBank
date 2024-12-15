@@ -10,11 +10,21 @@ class CustomerLoader
       end
     else
       default_customers = {
-        "ihsan_aycan" => { "1234" => -10500 },
-        "ali_dasbasi" => { "5678" => 1000 },
-        "burak_yilmaz" => { "1122" => 200000 },
-        "ahmet_yilmaz" => { "3344" => 0 },
-        "tulin_ozen" => { "5566" => 1000 }
+        "ihsan aycan" => {
+          "1234" => -10_500
+        },
+        "ali daşbaşı" => {
+          "5678" => 1000
+        },
+        "burak yılmaz" => {
+          "1122" => 200_000
+        },
+        "ahmet yılmaz" => {
+          "3344" => 0
+        },
+        "tülin özen" => {
+          "5566" => 1000
+        }
       }
 
       default_customers.each do |isim, customer_data|
@@ -26,7 +36,6 @@ class CustomerLoader
       save_customers_to_file(file_path, Customer.customers)
     end
   end
-
 
   def self.save_customers_to_file(file_path, customers)
     customer_data = customers.map(&:to_h)
