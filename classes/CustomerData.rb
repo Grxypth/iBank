@@ -3,8 +3,7 @@ require_relative "MoneyData"
 require_relative "CustomerLoader"
 
 class Customer
-  attr_accessor :isim, :password
-  attr_reader :bakiye
+  attr_accessor :isim, :password,:bakiye, :daily_limit, :original_limit
 
   @customers = []
 
@@ -17,6 +16,7 @@ class Customer
     @password = password
     @bakiye = bakiye
     @daily_limit = daily_limit
+    @original_limit = daily_limit
     @bank_object = MoneyData.new
     self.class.customers << self
     save_customer
@@ -58,6 +58,15 @@ class Customer
     @customers.find do |customer|
       customer.isim == isim && customer.password == password
     end
+  end
+
+  
+  def self.change_limit(isim, new_limit=10000)
+customer=@customers.find do |customer|
+customer.isim==isim
+end
+  customer.daily_limit=new_limit.to_i
+customer.save_customer
   end
 
   def withdraw(miktar)

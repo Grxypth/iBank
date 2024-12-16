@@ -33,10 +33,19 @@ def admin_panel
 
       case choice
       when 1
-        puts "\nList of customers: \n"
-        Customer.all_customers.each { |customer| puts "#{customer.isim}\n" }
+        puts "\nMüşterilerin listesi: \n"
+        Customer.customers.each do |customer|
+          puts "isim:#{customer.isim} \nşifre:#{customer.password} \ngünlük limit:#{customer.daily_limit}\n\n"
+        end
         menu_loop = true
       when 2
+        puts "\nLimitini değiştirmek istediğiniz kullanıcının ismini giriniz."
+        isim=validate_letter(gets.chomp)
+        puts "\nLimit miktarını giriniz"
+        limit=validate_number(gets.chomp)
+        Customer.change_limit(isim,limit)
+        menu_loop = true
+      when 3
         return true
       else
         puts "\nGeçersiz işlem. Lütfen tekrar deneyin."

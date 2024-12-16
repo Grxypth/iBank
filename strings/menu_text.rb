@@ -3,7 +3,7 @@ MENU_TEXT =
   "Lütfen yapmak istediğiniz işlemi seçin:",
   "1. Hesap Aç\n2. Giriş Yap \n3. Çıkış"
 
-ADMIN_MENU_TEXT = "1. Müşteri listesini görüntüle\n2. Çıkış"
+ADMIN_MENU_TEXT = "1. Müşteri listesini görüntüle \n2. Kullanıcı günlük limit değiştir\n3. Çıkış"
 
 USER_MENU_TEXT =
   "\n Değerli müşterimiz lütfen yapmak istediğiniz işlemi seçin:",
