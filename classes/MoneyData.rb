@@ -82,7 +82,6 @@ class MoneyData
     end
 
     save_bills
-    puts "THE BILLS I AM SAVING BOI: #{@bills.inspect}"
     ##@bills.each { |key, value| puts "#{key} TL: #{value} adet" if value > 0 }
     ##puts "Banka kasasında #{calculate_bills(@bills)}TL var"
     return true

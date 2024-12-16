@@ -12,17 +12,18 @@ class Customer
     @customers
   end
 
-  def initialize(isim = "", password = "", bakiye = 0)
+  def initialize(isim = "", password = "", bakiye = 0, daily_limit = 10_000)
     @isim = isim
     @password = password
     @bakiye = bakiye
+    @daily_limit = daily_limit
     @bank_object = MoneyData.new
     self.class.customers << self
     save_customer
   end
 
   def to_h
-    { @isim => { @password => @bakiye } }
+    { @isim => { @password => @bakiye, "daily_limit" => @daily_limit } }
   end
 
   def save_customer
@@ -61,15 +62,19 @@ class Customer
 
   def withdraw(miktar)
     withdrawn_bills = @bank_object.amount_to_bills(miktar)
-    withdrawn_bills.each { |key, value| puts "#{key} TL: #{value} adet" }
 
     if @bakiye >= miktar &&
          @bank_object.update_bill_data(withdrawn_bills, "withdraw")
-      puts "Toplam #{miktar}TL çektiniz:"
+      if miktar > @daily_limit
+        puts "İşlem limitinizi aşıyorsunuz! Günlük kalan para çekme hakkınız: #{@daily_limit}TL."
+        return false
+      end
+      puts "\nToplam #{miktar}TL çektiniz:"
       withdrawn_bills.each do |key, value|
         puts "#{key} TL: #{value} adet" if value > 0
       end
       @bakiye -= miktar
+      @daily_limit -= miktar
       puts "Yeni bakiyeniz #{@bakiye}TL\n"
       save_customer
     else
