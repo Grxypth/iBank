@@ -10,3 +10,4 @@
 * ben sistemimde üyeleri obje oluşturarak kaydediyor ve obje olarak tutuyordum, daha önceden oluşturulmuş hesapları programı her yeniden çalıştırdığımda yüklemem gerekiyordu bu yüzden, bunu aynı class içerisinde y
 *yapmaya çalıştırdığımda stack seviyesinin çok derin olduğunu söyleyen bir uyarı veriyordu program bana, yani sonsuz bir döngüye girdiği için böyle bir problem yaşıyordu çünkü sonsuz defa initialize kısmında
 * yeni obje oluşturuyordum yeni obje oluşturma gereken üye yükleme işleminide orda yaptığım için, bunu ekstra bir class kullanarak çözdüm 
+* json dosyalarından hash okuma ve json dosyalarına veri girmeyi öğrendim.

@@ -1,5 +1,8 @@
 require_relative "../strings/menu_text"
 require_relative "utils/utils"
+
+##kullanıcıdan banknot cinsinden input almak için kullanılan method
+
 def billify
   bills = { "200": 0, "100": 0, "50": 0, "20": 0, "10": 0, "5": 0 }
   menu_loop = false

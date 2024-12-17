@@ -18,17 +18,12 @@ class MoneyData
   end
 
   def save_bills
-    if File.exist?("bills_data.json")
-      data = JSON.parse(File.read("bills_data.json"))
-    else
-      data = {}
-    end
     File.open("bills_data.json", "w") do |file|
       file.write(JSON.generate(@bills))
     end
   end
 
-  def calculate_bills(bills)
+  def calculate_bills(bills) ##banknotlardan toplam para miktarını hesaplayan method
     total = 0
     bills.each do |key, value|
       bill_data = key.to_s.to_i
@@ -37,7 +32,7 @@ class MoneyData
     total
   end
 
-  def amount_to_bills(miktar)
+  def amount_to_bills(miktar) ##yatırılan para miktarını banknotlara çeviren method
     transaction_bills = {
       "200": 0,
       "100": 0,
@@ -57,7 +52,7 @@ class MoneyData
     return transaction_bills
   end
 
-  def update_bill_data(transaction_bills, type)
+  def update_bill_data(transaction_bills, type) ##bankada mevcut bulunan banknotları güncellemek için kullanılan method
     banka_fakir = calculate_bills(transaction_bills) > calculate_bills(@bills)
     if type == "withdraw" && banka_fakir
       puts "Banka kasasında yeterli bakiye yok."
