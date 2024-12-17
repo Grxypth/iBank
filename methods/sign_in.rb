@@ -1,7 +1,7 @@
 require_relative "../classes/CustomerData"
 require_relative "./panels/user_panel"
 
-def sign_in
+def sign_in ##kullanıcı girişi yapmak için kullanılan method
   puts "İsim ve soyisminizi giriniz"
   isim = validate_letter(gets.chomp.downcase)
   puts "Şifrenizi giriniz"

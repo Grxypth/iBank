@@ -1,4 +1,4 @@
-def validate_number(input)
+def validate_number(input) #sadece sayı kullanarak input almak için kullanılan method
   while true
     if input.chars.all? { |char| char =~ /[0-9]/ }
       return input
@@ -9,7 +9,7 @@ def validate_number(input)
   end
 end
 
-def validate_letter(input)
+def validate_letter(input) #sadece harf kullanarak input almak için kullanılan method
   valid_characters = "abcçdefgğhıijklmnoöprsştuüvyz ".chars
   while true
     if input.downcase.chars.all? { |char| valid_characters.include?(char) }
@@ -21,7 +21,7 @@ def validate_letter(input)
   end
 end
 
-def valid_password(input)
+def valid_password(input) #şifre oluşturmak için kullanılan method
   while true
     if input.to_s.length == 4
       validate_number(input)
@@ -33,7 +33,7 @@ def valid_password(input)
   end
 end
 
-def save_file(file_path, saved_data)
+def save_file(file_path, saved_data) #dosyaya veri kaydetmek için kullanılan method
   if File.exist?(file_path)
     data = JSON.parse(File.read(file_path))
   else

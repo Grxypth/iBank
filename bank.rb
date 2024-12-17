@@ -34,12 +34,12 @@ while true
     create_account
     menu_loop = true
   when 2
-    menu_loop=sign_in
+    menu_loop = sign_in
   when 3
     puts "Çıkış yapıldı... Bizi Tercih Ettiğiniz İçin Teşekkürler!"
     break
   when 999
-    puts "Admin kullanıcı bilgilerini giriniz"
+    puts "Admin kullanıcı bilgilerini giriniz" # admin paneline giriş yapmak için
     menu_loop = admin_panel
   else
     puts "\nGeçersiz işlem. Lütfen tekrar deneyin."

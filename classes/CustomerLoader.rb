@@ -1,5 +1,5 @@
 class CustomerLoader
-  def self.load_customers(file_path = "customer_data.json")
+  def self.load_customers(file_path = "customer_data.json") ## dosyadan mevcut müşterileri yüklemek için kullanılan method
     if File.exist?(file_path)
       data = JSON.parse(File.read(file_path))
 
@@ -44,7 +44,7 @@ class CustomerLoader
     end
   end
 
-  def self.save_customers_to_file(file_path, customers)
+  def self.save_customers_to_file(file_path, customers) ##mevcut müşterileri dosyaya kaydetmek için kullanılan method
     customer_data = customers.map(&:to_h)
     File.open(file_path, "w") do |file|
       file.write(JSON.generate(customer_data.reduce({}, :merge)))

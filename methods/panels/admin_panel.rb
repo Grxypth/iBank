@@ -33,17 +33,17 @@ def admin_panel
 
       case choice
       when 1
-        puts "\nMüşterilerin listesi: \n"
+        puts "\nMüşterilerin listesi: \n" ##müşterilerin listesini yazdır
         Customer.customers.each do |customer|
           puts "isim:#{customer.isim} \nşifre:#{customer.password} \ngünlük limit:#{customer.daily_limit}\n\n"
         end
         menu_loop = true
-      when 2
+      when 2 #günlük işlem limiti değiştirme
         puts "\nLimitini değiştirmek istediğiniz kullanıcının ismini giriniz."
-        isim=validate_letter(gets.chomp)
+        isim = validate_letter(gets.chomp)
         puts "\nLimit miktarını giriniz"
-        limit=validate_number(gets.chomp)
-        Customer.change_limit(isim,limit)
+        limit = validate_number(gets.chomp)
+        Customer.change_limit(isim, limit)
         menu_loop = true
       when 3
         return true
